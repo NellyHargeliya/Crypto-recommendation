@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    # Database connection settings for PostgreSQL
+    url: jdbc:postgresql://prod-db-server:5432/crypto_recommendation_db
+    username: ${POSTGRES_USER}  # Username for the PostgreSQL database
+    password: ${POSTGRES_PASSWORD}  # Password for the PostgreSQL database
+    driver-class-name: org.postgresql.Driver  # JDBC driver class name for PostgreSQL
+
+  jpa:
+    # JPA/Hibernate settings for production
+    show-sql: false  # Disable SQL query logging
+    hibernate:
+      ddl-auto: none  # Disable automatic schema creation
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect  # Hibernate dialect for PostgreSQL
+      hibernate.format_sql: false  # Disable formatting of SQL queries
+  # Cache configuration
+  cache:
+    type: redis  # Use Redis for caching
+    redis:
+      time-to-live: 60  # TTL in days for production
+  data:
+    redis:
+      host: redis-server
+      port: 6379
+      password:
+      timeout: 2000
+
+logging:
+  level:
+    # Logging levels configuration
+    root: WARN  # Set default logging level to WARN
+    org.springframework.web: ERROR  # Set Spring Web logging level to ERROR
+
+
+

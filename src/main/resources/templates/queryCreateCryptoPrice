@@ -1,0 +1,7 @@
+CREATE TABLE crypto_price (
+    id SERIAL PRIMARY KEY,
+    timestamp BIGINT NOT NULL,
+    price DECIMAL(20, 2) NOT NULL,
+    crypto_currency_id INT,
+    FOREIGN KEY (crypto_currency_id) REFERENCES crypto_currency(id)
+);

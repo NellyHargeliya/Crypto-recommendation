@@ -1,0 +1,33 @@
+# PostgreSQL DataSource settings
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crypto_recommendation_db
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  # Hibernate / JPA settings
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.format_sql: true
+
+  # Redis settings
+  cache:
+    type: redis  # Use Redis for caching
+    redis:
+      time-to-live: 2  # TTL in days for dev
+  data:
+    redis:
+      host: redis-server
+      port: 6379
+      password:
+      timeout: 2000
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG

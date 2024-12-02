@@ -1,0 +1,5 @@
+CREATE TABLE crypto_currencies (
+    id SERIAL PRIMARY KEY,
+    symbol VARCHAR(10) UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL
+);
