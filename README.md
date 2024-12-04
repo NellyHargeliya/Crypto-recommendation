@@ -194,13 +194,14 @@ To run the application with Docker and Docker Compose:
 Build the Docker images:
 
 ```shell
-docker-compose build
+docker-compose -f compose.yaml build
+
 ```
 
 Start the containers:
 
 ```shell
-docker-compose up
+docker-compose -f compose.yaml up
 ```
 This will set up the cryptoapp, PostgreSQL, and Redis containers, and the application will be available at http://localhost:8080.
 
