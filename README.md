@@ -89,7 +89,7 @@ or with predefined `spring.profiles.active`
 Alternatively, you can use Docker to run the application along with PostgreSQL and Redis:
 
 ```shell
-docker-compose up --build
+docker-compose -f compose.yaml up --build
 ```
 This will set up and start the application, PostgreSQL, and Redis containers.
 </details>
