@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.task.crypto.service.CryptoPriceService;
+import org.task.crypto.validation.ValidFileType;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,7 +35,10 @@ public class CSVController {
     @ResponseStatus(HttpStatus.OK)
     public void uploadFile(
             @Parameter(description = "The CSV file containing cryptocurrency prices to be uploaded")
-            @RequestParam("file") MultipartFile file) {
+            @RequestParam("file")
+            @NotNull(message = "File must not be null")
+            @NotEmpty(message = "File must not be empty")
+            @ValidFileType(allowedTypes = {"text/csv"}) MultipartFile file) {
         cryptoPriceService.loadCryptoPrices(file);
     }
 

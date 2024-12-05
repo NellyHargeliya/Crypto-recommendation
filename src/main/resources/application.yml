@@ -4,3 +4,6 @@ spring:
 
 server:
   forward-headers-strategy: native
+
+crypto:
+  prices-directory: src/main/resources/static/prices

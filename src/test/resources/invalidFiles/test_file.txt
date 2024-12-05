@@ -1,0 +1,2 @@
+timestamp,symbol,price
+1641009600000,BTC,46813.21

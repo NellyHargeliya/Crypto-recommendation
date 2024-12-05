@@ -5,12 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.task.crypto.dto.CryptoPriceDto;
 import org.task.crypto.exception.NoContentException;
 import org.task.crypto.model.CryptoPrice;
 import org.task.crypto.repository.CryptoPriceRepository;
+import org.task.crypto.utils.CustomMultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +33,8 @@ import java.util.List;
 public class CryptoPriceService {
     private final CryptoPriceRepository cryptoPriceRepository;
 
-    private static final String PRICES_DIRECTORY = "src/main/resources/static/prices";
+    @Value("${crypto.prices-directory}")
+    private String pricesDirectory;
 
     public List<CryptoPriceDto> loadCryptoPrices(MultipartFile file) {
         List<CryptoPriceDto> prices = new ArrayList<>();
@@ -66,15 +69,25 @@ public class CryptoPriceService {
     public void loadAllCsvFiles() {
         List<CryptoPriceDto> allPrices = new ArrayList<>();
         try {
-            List<File> filesInFolder = Files.walk(Paths.get(PRICES_DIRECTORY))
+            List<File> filesInFolder = Files.walk(Paths.get(pricesDirectory))
                     .filter(Files::isRegularFile)
                     .filter(path -> path.toString().endsWith(".csv"))
                     .map(Path::toFile)
                     .toList();
-
+            if (filesInFolder.isEmpty()) {
+                log.warn("No CSV files found in directory {}", pricesDirectory);
+            }
             for (File file : filesInFolder) {
                 try {
-                    List<CryptoPriceDto> prices = loadCryptoPrices((MultipartFile) Files.newInputStream(file.toPath()));
+                    String contentType = Files.probeContentType(file.toPath());
+                    byte[] fileContent = Files.readAllBytes(file.toPath());
+                    MultipartFile multipartFile = new CustomMultipartFile(
+                            file.getName(),
+                            contentType,
+                            fileContent
+                    );
+
+                    List<CryptoPriceDto> prices = loadCryptoPrices(multipartFile);
                     allPrices.addAll(prices);
                     saveCryptoPricesToDatabase(prices);
                 } catch (IOException e) {
@@ -87,7 +100,7 @@ public class CryptoPriceService {
             }
 
         } catch (IOException e) {
-            log.error("Error walking through directory {}: {}", PRICES_DIRECTORY, e.getMessage(), e);
+            log.error("Error walking through directory {}: {}", pricesDirectory, e.getMessage(), e);
         }
     }
 

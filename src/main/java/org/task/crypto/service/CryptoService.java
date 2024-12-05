@@ -94,7 +94,7 @@ public class CryptoService {
         return groupedBySymbol.entrySet().stream()
                 .map(entry -> calculateNormalizedRangeForSymbol(entry.getKey(), entry.getValue()))
                 .sorted(Comparator.comparing(CryptoRange::normalizedRange).reversed())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private CryptoRange calculateNormalizedRangeForSymbol(String symbol, List<CryptoPrice> prices) {

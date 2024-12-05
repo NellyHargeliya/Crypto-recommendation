@@ -6,17 +6,21 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
 import org.task.crypto.dto.CryptoRange;
 import org.task.crypto.model.CryptoPrice;
+import org.task.crypto.repository.CryptoPriceRepository;
 import org.task.crypto.service.CryptoService;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,6 +32,8 @@ class CryptoControllerTest {
 
     @InjectMocks
     private CryptoController cryptoController;
+    @Mock
+    private CryptoPriceRepository cryptoPriceRepository;
 
     private CryptoPrice mockCryptoPrice;
 
@@ -112,5 +118,48 @@ class CryptoControllerTest {
 
         assertNotNull(response.getFirst());
         assertEquals(expectedRanges, response);
+    }
+
+    @Test
+    public void testGetCryptoWithHighestNormalizedRange() {
+        LocalDate date = LocalDate.parse("2024-12-01");
+        CryptoPrice mockHighestRangeCrypto = new CryptoPrice();
+        mockHighestRangeCrypto.setSymbol("BTC");
+        mockHighestRangeCrypto.setPrice(BigDecimal.valueOf(50000.00));
+        mockHighestRangeCrypto.setTimestamp(LocalDateTime.parse("2024-12-01T00:00:00"));
+
+        when(cryptoService.getCryptoWithHighestNormalizedRange(date.atStartOfDay())).thenReturn(mockHighestRangeCrypto);
+
+        CryptoPrice response = cryptoController.getCryptoWithHighestNormalizedRange(date);
+
+        assertNotNull(response);
+        assertEquals(mockHighestRangeCrypto, response);
+        verify(cryptoService, times(1)).getCryptoWithHighestNormalizedRange(date.atStartOfDay());
+    }
+
+    @Test
+    public void testGetOldestPrice_NonExistingSymbol() {
+        String symbol = "XYZ";
+
+        when(cryptoService.getOldestPrice(symbol)).thenReturn(null);
+
+        CryptoPrice response = cryptoController.getOldestPrice(symbol);
+        assertNull(response);
+
+        verify(cryptoService, times(1)).getOldestPrice(symbol);
+    }
+
+    @Test
+    public void testGetPrice_InvalidType() {
+        String symbol = "BTC";
+        String type = "INVALID";
+        Integer months = 1;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            cryptoController.getPrice(symbol, type, months);
+        });
+
+        verify(cryptoService, never()).getMinPrice(symbol, months);
+        verify(cryptoService, never()).getMaxPrice(symbol, months);
     }
 }
