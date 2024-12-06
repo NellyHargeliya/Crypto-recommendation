@@ -30,6 +30,32 @@ The project is built using **Spring Boot** for the backend, **PostgreSQL** for t
 - **Caching**: Redis is used to cache frequently requested data to improve performance.
 - **Rate Limiting**: The application is protected against excessive requests from malicious users by limiting the number of requests per IP.
 
+## Test Coverage
+
+The project uses JaCoCo for test coverage analysis, and the following configuration ensures that the code coverage meets the specified thresholds. 
+This configuration checks that the code coverage is at least 80% for both instructions and branches. If these thresholds are not met, the build will fail.
+
+### Unit and Integration Tests
+
+The tests are categorized into unit tests and integration tests.
+
+- **Unit Tests**: These tests focus on testing individual components and are tagged with @Tag("unit").
+- **Integration** Tests: These tests ensure that the components work together as expected and are tagged with @Tag("integration").
+
+#### Running Unit Tests
+To run only the unit tests, use the following Gradle command:
+```shell
+./gradlew test --tests * --tags unit
+```
+This will execute all the tests that are tagged with @Tag("unit").
+
+#### Running Integration Tests
+To run only the integration tests, use the following Gradle command:
+```shell
+./gradlew test --tests * --tags integration
+```
+This will execute all the tests that are tagged with @Tag("integration").
+
 ### Endpoints
 
 #### Cryptocurrency Controller (`/api/cryptocurrencies`)
