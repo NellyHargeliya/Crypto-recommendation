@@ -5,14 +5,19 @@ spring:
     username: sa
     password: password
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
   h2:
     console:
       enabled: true
-  profiles:
-    active: test
-  aop:
-    auto: false
 
 crypto:
   prices-directory: src/test/resources/prices
+
+local:
+  server:
+    port: 50059

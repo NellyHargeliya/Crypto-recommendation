@@ -1,6 +1,7 @@
-package org.task.crypto.controller;
+package org.task.crypto.unit.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.task.crypto.controller.CSVController;
 import org.task.crypto.dto.CryptoPriceDto;
 import org.task.crypto.exception.GlobalExceptionHandler;
 import org.task.crypto.repository.CryptoPriceRepository;
@@ -28,6 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 class CSVControllerTest {
     @Mock

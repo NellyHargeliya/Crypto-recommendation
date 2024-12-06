@@ -1,5 +1,6 @@
-package org.task.crypto.controller;
+package org.task.crypto.unit.controller;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -7,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.task.crypto.controller.CryptoCurrencyController;
 import org.task.crypto.model.CryptoCurrency;
 import org.task.crypto.service.CryptoCurrencyService;
 
@@ -20,6 +22,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 class CryptoCurrencyControllerTest {
 

@@ -1,11 +1,14 @@
-package org.task.crypto.repository;
+package org.task.crypto.integration.repository;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.task.crypto.model.CryptoCurrency;
 import org.task.crypto.model.CryptoPrice;
+import org.task.crypto.repository.CryptoCurrencyRepository;
+import org.task.crypto.repository.CryptoPriceRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,6 +16,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Tag("integration")
 @DataJpaTest
 public class CryptoPriceRepositoryTest {
 

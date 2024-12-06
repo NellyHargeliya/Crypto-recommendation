@@ -1,11 +1,13 @@
-package org.task.crypto.controller;
+package org.task.crypto.unit.controller;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.task.crypto.controller.CryptoController;
 import org.task.crypto.dto.CryptoRange;
 import org.task.crypto.model.CryptoPrice;
 import org.task.crypto.repository.CryptoPriceRepository;
@@ -25,6 +27,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 class CryptoControllerTest {
     @Mock

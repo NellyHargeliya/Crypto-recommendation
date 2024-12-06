@@ -1,6 +1,7 @@
-package org.task.crypto.exception;
+package org.task.crypto.unit.exception;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -10,6 +11,9 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.server.ResponseStatusException;
+import org.task.crypto.exception.ErrorDetails;
+import org.task.crypto.exception.GlobalExceptionHandler;
+import org.task.crypto.exception.NoContentException;
 
 import java.util.List;
 import java.util.Map;
@@ -18,6 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
+@Tag("unit")
 class GlobalExceptionHandlerTest {
     @Mock
     private List<String> allowedCryptocurrencies;

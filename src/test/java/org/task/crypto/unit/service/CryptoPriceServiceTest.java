@@ -1,6 +1,7 @@
-package org.task.crypto.service;
+package org.task.crypto.unit.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,6 +14,7 @@ import org.task.crypto.dto.CryptoPriceDto;
 import org.task.crypto.exception.NoContentException;
 import org.task.crypto.model.CryptoPrice;
 import org.task.crypto.repository.CryptoPriceRepository;
+import org.task.crypto.service.CryptoPriceService;
 import org.task.crypto.utils.CustomMultipartFile;
 
 import java.io.IOException;
@@ -34,6 +36,7 @@ import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 public class CryptoPriceServiceTest {
 

@@ -1,7 +1,9 @@
-package org.task.crypto.utils;
+package org.task.crypto.unit.utils;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.task.crypto.utils.CustomMultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CustomMultipartFileTests {
+@Tag("unit")
+class CustomMultipartFileTest {
 
     @Test
     void testFileAttributes() throws IOException {

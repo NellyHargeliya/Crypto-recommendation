@@ -1,9 +1,13 @@
-package org.task.crypto.exception;
+package org.task.crypto.unit.exception;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.task.crypto.exception.ErrorDetails;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+@Tag("unit")
 class ErrorDetailsTest {
 
     @Test

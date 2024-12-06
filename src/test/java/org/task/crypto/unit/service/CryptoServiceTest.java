@@ -1,6 +1,7 @@
-package org.task.crypto.service;
+package org.task.crypto.unit.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -9,6 +10,7 @@ import org.task.crypto.dto.CryptoRange;
 import org.task.crypto.exception.NoContentException;
 import org.task.crypto.model.CryptoPrice;
 import org.task.crypto.repository.CryptoPriceRepository;
+import org.task.crypto.service.CryptoService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,6 +25,7 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Tag("unit")
 class CryptoServiceTest {
 
     @Mock

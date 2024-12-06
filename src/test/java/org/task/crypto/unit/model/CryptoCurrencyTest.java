@@ -1,10 +1,13 @@
-package org.task.crypto.model;
+package org.task.crypto.unit.model;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.task.crypto.model.CryptoCurrency;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Tag("unit")
 public class CryptoCurrencyTest {
 
     @Test

@@ -1,17 +1,22 @@
-package org.task.crypto.validation;
+package org.task.crypto.unit.validation;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockMultipartFile;
+import org.task.crypto.validation.FileTypeValidator;
+import org.task.crypto.validation.ValidFileType;
 
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 import java.lang.annotation.Annotation;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Tag("unit")
 class FileTypeValidatorTest {
 
     private FileTypeValidator fileTypeValidator;
@@ -65,7 +70,8 @@ class FileTypeValidatorTest {
     @Test
     void testIsValidWithInvalidFileType() {
         MockMultipartFile invalidFile = new MockMultipartFile(
-                "file", "test.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "random content".getBytes());
+                "file", "test.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "random content".getBytes());
 
         boolean isValid = fileTypeValidator.isValid(invalidFile, context);
 

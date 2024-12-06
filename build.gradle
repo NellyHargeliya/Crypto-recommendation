@@ -60,6 +60,19 @@ dependencies {
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'io.rest-assured:rest-assured:5.3.0'
+    testImplementation 'io.rest-assured:json-path:5.3.0'
+    testImplementation 'io.rest-assured:xml-path:5.3.0'
+    testImplementation 'io.rest-assured:json-schema-validator:5.3.0'
+
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    testImplementation 'org.testcontainers:junit-jupiter:1.19.0'
+    testImplementation 'org.testcontainers:postgresql:1.18.3'
+
     runtimeOnly 'com.h2database:h2'
 }
 

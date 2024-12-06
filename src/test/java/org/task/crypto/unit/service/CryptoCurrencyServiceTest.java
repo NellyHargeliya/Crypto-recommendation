@@ -1,6 +1,7 @@
-package org.task.crypto.service;
+package org.task.crypto.unit.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -8,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.task.crypto.model.CryptoCurrency;
 import org.task.crypto.repository.CryptoCurrencyRepository;
+import org.task.crypto.service.CryptoCurrencyService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +24,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Tag("unit")
 @ExtendWith(MockitoExtension.class)
 public class CryptoCurrencyServiceTest {
 
